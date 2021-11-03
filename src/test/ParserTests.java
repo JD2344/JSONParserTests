@@ -7,6 +7,8 @@ import java.io.IOException;
 import java.io.StringReader;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import json.JSONException;
 import json.JSONParser;
@@ -30,22 +32,25 @@ public class ParserTests {
 
 			JSONValue secondParsed = JSONParser.parse(new StringReader("{}"));
 			assertTrue(secondParsed instanceof JSONValue);
-			
-			JSONValue thirdParsed = JSONParser.parseFile(System.getProperty("user.dir") + "/src/jsonFiles/Testing.json");
+
+			JSONValue thirdParsed = JSONParser
+					.parseFile(System.getProperty("user.dir") + "/src/jsonFiles/Testing.json");
 			assertTrue(thirdParsed instanceof JSONValue);
-			
+
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (JSONException e) {
 		}
 	}
-	
+
 	/**
 	 * Tests exception functionality within the {@link JSONParser}
 	 */
-	@Test
-	public void testExceptions() {
-		assertThrows(JSONException.class, () -> JSONParser.parse("{},"));
+	@ParameterizedTest
+	@ValueSource(strings = { "{},", "{a}", "{\"value1\".}", "{\"value1\":\"key\",}}", "{\"value1\":\"key\"!}", "[1,]",
+			"[1", "tfue", "ftalse", "nall", "10.1." })
+	public void testExceptions(String testInput) {
+		assertThrows(JSONException.class, () -> JSONParser.parse(testInput));
 	}
 }
