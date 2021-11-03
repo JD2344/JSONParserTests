@@ -49,7 +49,7 @@ public class ParserTests {
 	 */
 	@ParameterizedTest
 	@ValueSource(strings = { "{},", "{a}", "{\"value1\".}", "{\"value1\":\"key\",}}", "{\"value1\":\"key\"!}", "[1,]",
-			"[1", "tfue", "ftalse", "nall", "10.1." })
+			"[1", "tfue", "ftalse", "nall", "10.1.", "!", "\"\\m\"" })
 	public void testExceptions(String testInput) {
 		assertThrows(JSONException.class, () -> JSONParser.parse(testInput));
 	}
