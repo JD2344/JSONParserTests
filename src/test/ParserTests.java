@@ -1,6 +1,8 @@
 package test;
 
-import java.io.File;
+import static org.junit.Assert.assertThrows;
+import static org.junit.Assert.assertTrue;
+
 import java.io.IOException;
 import java.io.StringReader;
 
@@ -17,21 +19,33 @@ import json.JSONValue;
  *
  */
 public class ParserTests {
-
+	/**
+	 * Tests the parser functionality
+	 */
 	@Test
 	public void testParsers() {
 		try {
-			JSONValue firstParsed = JSONParser.parse("");
+			JSONValue firstParsed = JSONParser.parse("{}");
+			assertTrue(firstParsed instanceof JSONValue);
 
 			JSONValue secondParsed = JSONParser.parse(new StringReader("{}"));
-
-			JSONValue thirdParsed = JSONParser.parseFile("jsonFiles/Testing.json");
+			assertTrue(secondParsed instanceof JSONValue);
+			
+			JSONValue thirdParsed = JSONParser.parseFile(System.getProperty("user.dir") + "/src/jsonFiles/Testing.json");
+			assertTrue(thirdParsed instanceof JSONValue);
+			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
+	}
+	
+	/**
+	 * Tests exception functionality within the {@link JSONParser}
+	 */
+	@Test
+	public void testExceptions() {
+		assertThrows(JSONException.class, () -> JSONParser.parse("{},"));
 	}
 }
