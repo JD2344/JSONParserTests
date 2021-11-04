@@ -1,5 +1,6 @@
 package test;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.jupiter.api.Test;
@@ -22,6 +23,7 @@ public class BooleanTests {
 		JSONBoolean firstVal = JSONFactory.createBoolean(false);
 		
 		assertTrue(firstVal instanceof JSONBoolean);
+		assertTrue(firstVal.isBoolean());
 	}
 	
 	/**
@@ -31,7 +33,8 @@ public class BooleanTests {
 	public void testToString() {
 		JSONBoolean firstVal = JSONFactory.createBoolean(false);
 		JSONBoolean secondVal = JSONFactory.createBoolean(true);
-		assertTrue(firstVal.toString() == "false");
-		assertTrue(secondVal.toString() == "true");
+		assertEquals(firstVal.toString(), "false");
+		assertEquals(secondVal.toString(), "true");
 	}
+	
 }
