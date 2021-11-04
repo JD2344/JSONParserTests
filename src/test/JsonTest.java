@@ -2,9 +2,15 @@ package test;
 
 import static org.junit.Assert.assertTrue;
 
-import org.junit.jupiter.api.Test;
+import java.io.IOException;
 
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
+
+import json.JSONException;
 import json.JSONFactory;
+import json.JSONParser;
 import json.JSONValue;
 
 
@@ -19,19 +25,24 @@ public class JsonTest {
 	/**
 	 * Tests the various value methods 
 	 */
-	@Test
-	public void valueTests() {
-		JSONValue boolVal = JSONFactory.createBoolean(false);
-		JSONValue numberVal = JSONFactory.createNumber(10);
-		JSONValue arrayVal = JSONFactory.createArray();
-		JSONValue stringVal = JSONFactory.createString("hello");
-		JSONValue nullVal = JSONFactory.createNull();
-		JSONValue objectVal = JSONFactory.createObject();
-		assertTrue(boolVal.isBoolean());
-		assertTrue(numberVal.isNumber());
-		assertTrue(arrayVal.isArray());
-		assertTrue(stringVal.isString());
-		assertTrue(nullVal.isNull());
-		assertTrue(objectVal.isObject());
+	@ParameterizedTest
+	@ValueSource(strings = { "false", "10", "\"hello\"", "null", "{}", "[]"})
+	public void valueTests(String value) {
+		try {
+			JSONValue jsonVal = JSONParser.parse(value);
+			
+			if(jsonVal.isBoolean()) {
+				assertTrue(jsonVal.isBoolean());
+			} 
+			else if(jsonVal.isNumber()) {
+				assertTrue(jsonVal.isNumber());
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }
