@@ -37,6 +37,18 @@ public class JsonTest {
 			else if(jsonVal.isNumber()) {
 				assertTrue(jsonVal.isNumber());
 			}
+			else if(jsonVal.isObject()) {
+				assertTrue(jsonVal.isObject());
+			}
+			else if(jsonVal.isString()) {
+				assertTrue(jsonVal.isString());
+			}
+			else if(jsonVal.isNull()) {
+				assertTrue(jsonVal.isNull());
+			}
+			else if(jsonVal.isArray()) {
+				assertTrue(jsonVal.isArray());
+			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
