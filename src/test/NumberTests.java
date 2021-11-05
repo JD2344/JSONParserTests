@@ -15,7 +15,7 @@ public class NumberTests {
 	@Test
 	public void testConstructors() {
 		JSONNumber withDouble = JSONFactory.createNumber(10.2);
-		JSONNumber withFloat = JSONFactory.createNumber(22.4f);
+		JSONNumber withFloat = JSONFactory.createNumber(22.412312343f);
 		JSONNumber withLong = JSONFactory.createNumber(213425245l);
 		
 		

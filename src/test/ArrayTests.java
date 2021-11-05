@@ -3,10 +3,15 @@ package test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import json.JSONArray;
 import json.JSONFactory;
+import json.JSONNull;
+import json.JSONValue;
 
 /**
  * Tests all functionality of the {@link JSONArray} class
@@ -14,6 +19,28 @@ import json.JSONFactory;
  *
  */
 public class ArrayTests {
+	/**
+	 * A default array of values
+	 */
+	private JSONArray testingArray;
+	
+	/**
+	 * Builds a new {@link JSONArray} with values of all types
+	 */
+	ArrayTests() {
+		JSONArray finishedA = JSONFactory.createArray(10);
+		finishedA.addValue();
+		finishedA.addValue(false);
+		finishedA.addValue(true);
+		finishedA.addValue(10.2);
+		finishedA.addValue(22.3f);
+		finishedA.addValue(JSONFactory.createArray());
+		finishedA.addValue(JSONFactory.createObject());
+		finishedA.addValue();
+		finishedA.addValue(21475963l);
+		finishedA.addValue("hello");
+		this.testingArray = finishedA;
+	}
 	
 	/**
 	 * Tests the constructors of the {@link JSONArray} class
@@ -47,5 +74,15 @@ public class ArrayTests {
 		
 		assertEquals(firstA.toString(), "[]");
 		assertEquals(thirdA.toString(), "[false]");
+	}
+	
+	/**
+	 * Provides testing functionality for the {@link JSONArray} .add() methods
+	 */
+	@Test
+	public void testAddValueMethods() {
+		for(int index = 0; index < testingArray.size(); index++) {
+			assertEquals(testingArray.get(index), JSONNull.JSON_NULL);
+		}
 	}
 }
