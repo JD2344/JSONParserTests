@@ -20,4 +20,34 @@ public class NumberTests {
 		
 		
 	}
+	
+	@Test
+	public void testEquals() {
+		
+	}
+	
+	@Test
+	public void testHashcode() {
+		
+	}
+	
+	@Test
+	public void testToString() {
+		
+	}
+	
+	@Test
+	public void testGetNumber() {
+		
+	}
+	
+	@Test
+	public void testIsNumber() {
+		
+	}
+	
+	@Test
+	public void testAsType() {
+		
+	}
 }
