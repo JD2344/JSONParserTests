@@ -55,6 +55,7 @@ public class ArrayTests {
 		assertTrue(firstA instanceof JSONArray);
 		assertTrue(secondA instanceof JSONArray);
 		assertTrue(lastA instanceof JSONArray);
+		assertEquals(lastA, secondA);
 	}
 	
 	/**
