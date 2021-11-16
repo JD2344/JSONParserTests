@@ -4,6 +4,8 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import json.JSONBoolean;
 import json.JSONFactory;
@@ -40,10 +42,11 @@ public class BooleanTests {
 	/**
 	 * Provides test for {@link JSONBoolean} asBoolean()
 	 */
-	@Test
-	public void testAsBoolean() {
-		JSONBoolean testVal = JSONFactory.createBoolean(false);
-		assertTrue(testVal.asBoolean() == false);
+	@ParameterizedTest
+	@ValueSource(booleans = { true, false })
+	public void testAsBoolean(boolean testVal) {
+		JSONBoolean falseVal = JSONFactory.createBoolean(testVal);
+		assertTrue(falseVal.asBoolean() == testVal);
 	}
 	
 	/**
@@ -63,7 +66,12 @@ public class BooleanTests {
 	 */
 	@Test
 	public void testEquals() {
-		JSONBoolean bool = JSONFactory.createBoolean(false);
-		
+		JSONBoolean falseB = JSONFactory.createBoolean(false);
+		JSONBoolean duplicateF = JSONFactory.createBoolean(false);
+
+		JSONBoolean trueB = JSONFactory.createBoolean(true);
+		JSONBoolean duplicateT = JSONFactory.createBoolean(true);
+		assertTrue(falseB.equals(duplicateF));
+		assertTrue(trueB.equals(duplicateT));
 	}
 }
