@@ -1,13 +1,17 @@
 package test;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThrows;
 import static org.junit.Assert.assertTrue;
+
+import java.io.IOException;
 
 import org.junit.jupiter.api.Test;
 
 import json.JSONException;
 import json.JSONFactory;
 import json.JSONObject;
+import json.JSONParser;
 
 /**
  * Provides tests for the {@link JSONObject} class
@@ -34,13 +38,40 @@ public class ObjectTests {
 
 	}
 
+	/**
+	 * Test the AsObject Method
+	 */
 	@Test
 	public void testAsObject() {
 		JSONObject object = JSONFactory.createObject();
 		try {
-			object.asObject();
+			JSONObject copy = object.asObject();
+			assertEquals(object, copy);
 		} catch (JSONException e) {
 			
 		}
+	}
+	
+	@Test
+	public void testToString() {
+		String object = "{ \"isHere\":true }";
+		//TODO: fix this????
+		try {
+			JSONObject testVal = JSONParser.parse(object).asObject();
+			assertEquals(testVal.toString(), object.toString());
+			
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	@Test
+	public void testAddStringMember() {
+		JSONObject o = JSONFactory.createObject();
+		
 	}
 }
