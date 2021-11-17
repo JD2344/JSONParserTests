@@ -5,6 +5,7 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
+import json.JSONException;
 import json.JSONFactory;
 import json.JSONNumber;
 
@@ -18,12 +19,16 @@ public class NumberTests {
 	@Test
 	public void testConstructors() {
 		JSONNumber withDouble = JSONFactory.createNumber(10.2);
+		JSONNumber withLongDec = JSONFactory.createNumber(43.192929393948);
 		JSONNumber withFloat = JSONFactory.createNumber(22.412312343f);
 		JSONNumber withLong = JSONFactory.createNumber(213425245l);
+		JSONNumber withLongovMax = JSONFactory.createNumber(9913425245l);
 		
 		assertTrue(withDouble instanceof JSONNumber);
+		assertTrue(withLongDec instanceof JSONNumber);
 		assertTrue(withFloat instanceof JSONNumber);
 		assertTrue(withLong instanceof JSONNumber);
+		assertTrue(withLongovMax instanceof JSONNumber);
 	}
 	
 	@Test
@@ -63,10 +68,30 @@ public class NumberTests {
 	
 	@Test
 	public void testAsType() {
-		JSONNumber withInt = JSONFactory.createNumber(1);
+		JSONNumber withInt = JSONFactory.createNumber((Integer)1);
 		JSONNumber withDouble = JSONFactory.createNumber(10.2);
 		JSONNumber withFloat = JSONFactory.createNumber(22.412312343f);
 		JSONNumber withLong = JSONFactory.createNumber(213425245l);
+		
+		try {
+			assertTrue(withInt.asInteger() == 1);
+			
+			assertTrue(withDouble.asDouble() == 10.2);
+			assertTrue(withDouble.asDouble() == 10.2);
+			assertTrue(withFloat.asDouble() == 22.412312343f);
+			assertTrue(withLong.asDouble() == 213425245l);
+			
+			assertTrue(withFloat.asFloat() == 22.412312343f);
+			//assertTrue(withDouble.asFloat() == 10.2);
+			//assertTrue(withInt.asFloat() == 1);
+			//assertTrue(withLong.asFloat() == 2134254542);
+			
+			assertTrue(withLong.asLong() == 213425245l);
+			assertTrue(withInt.asLong() == 1);
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 }
