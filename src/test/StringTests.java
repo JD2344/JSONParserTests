@@ -1,5 +1,6 @@
 package test;
 
+import static org.junit.Assert.assertThrows;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.jupiter.api.Test;
@@ -30,5 +31,26 @@ public class StringTests {
 		JSONString test = JSONFactory.createString(testVal);
 		System.out.println(test.toString() + " " + testVal);
 		assertTrue(test.toString() == testVal);
+	}
+	
+	@Test
+	public void testToString() {
+		JSONString test = JSONFactory.createString("");
+		
+		if(test == JSONString.JSON_EMPTY_STRING) {
+			assertTrue(test.toString().contains("\"\""));
+		}
+	}
+	
+	@Test
+	public void testAsString() {
+		JSONString test = JSONFactory.createString("testValueHere");
+		try {
+			assertTrue(test.asString() == "testValueHere");
+		} catch (JSONException e) {
+			if(!(test.toString() instanceof String)) {
+				assertThrows(JSONException.class, () -> test.asString());
+			}
+		}
 	}
 }
