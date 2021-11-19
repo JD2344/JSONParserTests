@@ -3,14 +3,22 @@ package test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+import java.io.IOException;
+
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import json.JSONArray;
+import json.JSONBoolean;
+import json.JSONException;
 import json.JSONFactory;
 import json.JSONNull;
+import json.JSONNumber;
+import json.JSONObject;
+import json.JSONParser;
+import json.JSONString;
 import json.JSONValue;
 
 /**
@@ -84,7 +92,35 @@ public class ArrayTests {
 	@Test
 	public void testAddValueMethods() {
 		for(int index = 0; index < testingArray.size(); index++) {
-			assertEquals(testingArray.get(index), JSONNull.JSON_NULL);
+			try {
+				JSONValue value = JSONParser.parse(testingArray.get(index).toString());
+				
+				if(value.isNull()) 
+					assertTrue(value instanceof JSONNull);
+				
+				if(value.isObject())
+					assertTrue(value instanceof JSONObject);
+				
+				if(value.isArray())
+					assertTrue(value instanceof JSONArray);
+				
+				if(value.isBoolean())
+					assertTrue(value instanceof JSONBoolean);
+				
+				if(value.isNumber())
+					assertTrue(value instanceof JSONNumber);
+				
+				if(value.isString())
+					assertTrue(value instanceof JSONString);
+					
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
 		}
 	}
 }
