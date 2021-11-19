@@ -3,6 +3,7 @@ package test;
 import static org.junit.Assert.assertThrows;
 import static org.junit.Assert.assertTrue;
 
+import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -27,6 +28,7 @@ public class StringTests {
 
 	@ParameterizedTest
 	@ValueSource(strings = { "\"", "\\", "/" })
+	//TODO:fix this...
 	public void testEncoder(String testVal) {
 		JSONString test = JSONFactory.createString(testVal);
 		System.out.println(test.toString() + " " + testVal);
@@ -42,9 +44,11 @@ public class StringTests {
 		}
 	}
 	
-	@Test
-	public void testAsString() {
-		JSONString test = JSONFactory.createString("testValueHere");
+	@ParameterizedTest
+	@ValueSource(strings = { "testValueHere", ""})
+	@RepeatedTest(10)
+	public void testAsString(String testValue) {
+		JSONString test = JSONFactory.createString(testValue);
 		try {
 			assertTrue(test.asString() == "testValueHere");
 		} catch (JSONException e) {
