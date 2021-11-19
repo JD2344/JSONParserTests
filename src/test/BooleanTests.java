@@ -45,8 +45,8 @@ public class BooleanTests {
 	@ParameterizedTest
 	@ValueSource(booleans = { true, false })
 	public void testAsBoolean(boolean testVal) {
-		JSONBoolean falseVal = JSONFactory.createBoolean(testVal);
-		assertTrue(falseVal.asBoolean() == testVal);
+		JSONBoolean boolVal = JSONFactory.createBoolean(testVal);
+		assertTrue(boolVal.asBoolean() == testVal);
 	}
 	
 	/**
