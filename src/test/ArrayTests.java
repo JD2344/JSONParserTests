@@ -88,7 +88,6 @@ public class ArrayTests {
 	/**
 	 * Provides testing functionality for the {@link JSONArray} .add() methods
 	 */
-	//TODO: FIX THIS!!!!
 	@Test
 	public void testAddValueMethods() {
 		for(int index = 0; index < testingArray.size(); index++) {
