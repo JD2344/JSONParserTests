@@ -57,7 +57,7 @@ public class NumberTests {
 	@Test
 	public void testGetNumber() {
 		JSONNumber nVal = JSONFactory.createNumber(10.3);
-		assertTrue(nVal.getNumber() == (Object)10.3);
+		assertEquals(nVal.getNumber(), (Object)10.3);
 	}
 	
 	@Test
@@ -67,27 +67,28 @@ public class NumberTests {
 	}
 	
 	@Test
+	//TODO: fix this shit. wtf man..
 	public void testAsType() {
-		JSONNumber withInt = JSONFactory.createNumber((Integer)1);
+		JSONNumber withInt = JSONFactory.createNumber(1);
 		JSONNumber withDouble = JSONFactory.createNumber(10.2);
 		JSONNumber withFloat = JSONFactory.createNumber(22.412312343f);
 		JSONNumber withLong = JSONFactory.createNumber(213425245l);
 		
 		try {
-			assertTrue(withInt.asInteger() == 1);
+			assertEquals(withInt.asInteger(), 1);
 			
-			assertTrue(withDouble.asDouble() == 10.2);
-			assertTrue(withDouble.asDouble() == 10.2);
-			assertTrue(withFloat.asDouble() == 22.412312343f);
-			assertTrue(withLong.asDouble() == 213425245l);
+			assertEquals(withDouble.asDouble(), 10.2);
+			assertEquals(withDouble.asDouble() == 10.2);
+			assertEquals(withFloat.asDouble() == 22.412312343f);
+			assertEquals(withLong.asDouble() == 213425245l);
 			
-			assertTrue(withFloat.asFloat() == 22.412312343f);
+			assertEquals(withFloat.asFloat() == 22.412312343f);
 			//assertTrue(withDouble.asFloat() == 10.2);
 			//assertTrue(withInt.asFloat() == 1);
 			//assertTrue(withLong.asFloat() == 2134254542);
 			
-			assertTrue(withLong.asLong() == 213425245l);
-			assertTrue(withInt.asLong() == 1);
+			assertEquals(withLong.asLong() == 213425245l);
+			assertEquals(withInt.asLong() == 1);
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
