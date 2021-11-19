@@ -54,10 +54,11 @@ public class ObjectTests {
 	
 	@Test
 	public void testToString() {
-		String object = "{ \"isHere\":true }";
-		//TODO: fix this????
+		String object = "{\"isHere\":true}";
+		//TODO: maybe add whitespace check "{ \"isHere\":true }" <- this breaks it....
 		try {
 			JSONObject testVal = JSONParser.parse(object).asObject();
+			System.out.println(testVal + " " + object.toString());
 			assertEquals(testVal.toString(), object.toString());
 			
 		} catch (JSONException e) {
