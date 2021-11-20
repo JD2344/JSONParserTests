@@ -16,7 +16,8 @@ import json.JSONFactory;
  *
  */
 public class BooleanTests {
-	
+	//TODO: Maybe add in some tests for negative booleans. 
+	//Might be worthwhile to check if they dont match a value 
 	/**
 	 * Tests the {@link JSONBoolean} constructor
 	 */
