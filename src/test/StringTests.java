@@ -1,5 +1,6 @@
 package test;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThrows;
 import static org.junit.Assert.assertTrue;
 
@@ -27,35 +28,79 @@ public class StringTests {
 	}
 
 	@ParameterizedTest
-	@ValueSource(strings = { "\"", "\\", "/" })
-	//TODO:fix this...
+	@ValueSource(strings = { "\"", "\\", "/", "\b", "\f", "\n"
+			,"\r", "\t"})
 	public void testEncoder(String testVal) {
-		JSONString test = JSONFactory.createString(testVal);
-		System.out.println(test.toString() + " " + testVal);
-		assertTrue(test.toString() == testVal);
+		StringBuilder sb = new StringBuilder();
+		String encodedCompare = buildEncodedString(testVal);
+		
+		sb = JSONString.encode(testVal, sb);
+		
+		
+		assertEquals(sb.toString(), encodedCompare);
 	}
-	
+
 	@Test
 	public void testToString() {
 		JSONString test = JSONFactory.createString("");
-		
-		if(test == JSONString.JSON_EMPTY_STRING) {
+
+		if (test == JSONString.JSON_EMPTY_STRING) {
 			assertTrue(test.toString().contains("\"\""));
 		}
 	}
-	
+
 	@ParameterizedTest
-	@ValueSource(strings = { "testValueHere", "{}"})
+	@ValueSource(strings = { "testValueHere", "{}" })
 	@RepeatedTest(10)
-	//TODO:fix this 
+	// TODO:fix this
 	public void testAsString(String testValue) {
 		JSONString test = JSONFactory.createString(testValue);
 		try {
 			assertTrue(test.asString() == testValue.toString());
 		} catch (JSONException e) {
-			if(!(test.toString() instanceof String)) {
+			if (!(test.toString() instanceof String)) {
 				assertThrows(JSONException.class, () -> test.asString());
 			}
 		}
+	}
+	
+	/**
+	 * Helper function to encode a string in such a way like the 
+	 * {@link JSONString} encoder handles it. 
+	 * @param testVal - The value to test
+	 * @return The encoded string value
+	 */
+	private String buildEncodedString(String testVal) {
+		StringBuilder builder = new StringBuilder();
+		builder.append('\"');
+		for(int i = 0; i < testVal.length(); i++) {
+			char c = testVal.charAt(i);
+			switch (c) {
+			case '\b':
+				builder.append("\\b");
+				break;
+				
+			case '\f':
+				builder.append("\\f");
+				break;
+				
+			case '\n':
+				builder.append("\\n");
+				break;
+				
+			case '\r':
+				builder.append("\\r");
+				break;
+				
+			case '\t':
+				builder.append("\\t");
+				break;
+			default:
+				return "\"\\" + testVal + "\"";
+			}			
+		}
+		builder.append('\"');
+
+		return builder.toString();
 	}
 }
