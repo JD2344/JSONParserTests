@@ -45,13 +45,13 @@ public class StringTests {
 	}
 	
 	@ParameterizedTest
-	@ValueSource(strings = { "testValueHere", ""})
+	@ValueSource(strings = { "testValueHere", "{}"})
 	@RepeatedTest(10)
 	//TODO:fix this 
 	public void testAsString(String testValue) {
 		JSONString test = JSONFactory.createString(testValue);
 		try {
-			assertTrue(test.asString() == "testValueHere");
+			assertTrue(test.asString() == testValue.toString());
 		} catch (JSONException e) {
 			if(!(test.toString() instanceof String)) {
 				assertThrows(JSONException.class, () -> test.asString());
