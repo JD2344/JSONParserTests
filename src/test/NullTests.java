@@ -4,26 +4,37 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 
 import json.JSONArray;
 import json.JSONFactory;
 import json.JSONNull;
 import json.JSONObject;
+import json.JSONValue;
 
 /**
  * Tests functionality present within the {@link JSONNull} class.
- * @author c3576413
+ * @author James Davis - c3576413
  *
  */
 public class NullTests {
+	private static JSONNull nullVal;
+	private static String nullstring;
+	private static final int hashVal = 953;
+	
+	@BeforeAll
+	public static void buildObjects() {
+		nullVal = JSONNull.JSON_NULL;
+		nullstring = "null";
+	}
 	
 	/**
 	 * Test isNull
 	 */
 	@Test
 	public void testIsNull() {
-		JSONNull nullVal = JSONNull.JSON_NULL;
 		assertTrue(nullVal.isNull());
 		assertEquals(nullVal, JSONNull.JSON_NULL);
 	}
@@ -31,12 +42,10 @@ public class NullTests {
 	/**
 	 * Test the tostring method of the {@link JSONNull} class
 	 */
-	@Test
+	@RepeatedTest(5)
 	public void testToString() {
-		JSONNull nullVal = JSONNull.JSON_NULL;
-		
-		if(nullVal.toString() == "null") {
-			assertTrue(nullVal.toString() == "null");			
+		if(nullVal.toString() == nullstring) {
+			assertTrue(nullVal.toString() == nullstring);			
 		}
 		else 
 		{
@@ -47,18 +56,15 @@ public class NullTests {
 	/**
 	 * Test the Hashcode method of the {@link JSONNull} class
 	 */
-	@Test
+	@RepeatedTest(5)
 	public void testHashCode() {
-		JSONNull nullVal = JSONNull.JSON_NULL;
-		
-		if(nullVal.hashCode() == 953) {
-			assertTrue(nullVal.hashCode() == 953);			
+		if(nullVal.hashCode() == hashVal) {
+			assertTrue(nullVal.hashCode() == hashVal);			
 		} 
 		else 
 		{
-			fail("Hashcode did not match: 953");
+			fail("Hashcode did not match: " + hashVal);
 		}
-		
 	}
 	
 	/**
@@ -71,9 +77,8 @@ public class NullTests {
 	
 	@Test
 	public void testAppend() {
-		JSONArray testArray = JSONFactory.createArray();
+		JSONValue testArray = JSONFactory.createArray();
 		JSONObject testObject = JSONFactory.createObject();
-		
 		
 	}
 }
