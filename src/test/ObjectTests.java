@@ -3,6 +3,7 @@ package test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThrows;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assume.assumeFalse;
 
 import java.io.IOException;
 
@@ -48,7 +49,7 @@ public class ObjectTests {
 			JSONObject copy = object.asObject();
 			assertEquals(object, copy);
 		} catch (JSONException e) {
-			
+			e.printStackTrace();
 		}
 	}
 	
@@ -71,8 +72,26 @@ public class ObjectTests {
 	}
 	
 	@Test
-	public void testAddStringMember() {
-		JSONObject o = JSONFactory.createObject();
+	public void testAddMember() {
+		JSONObject objWNull = JSONFactory.createObject();
+		objWNull.addMember("isPresent");
+		
+		assertEquals(objWNull.toString(), "{\"isPresent\":null}");
+		assertTrue(objWNull.hasMember("isPresent"));
+		assumeFalse(objWNull.hasMember("testmember"));
+		
+		JSONObject objFBool = JSONFactory.createObject();
+		objFBool.addMember("isPresent", false);
+		
+		assertTrue(objFBool.hasMember("isPresent"));
+		assertTrue(objFBool.hasBooleanMember("isPresent") == false);
+		
+		JSONObject objTBool = JSONFactory.createObject();
+		objTBool.addMember("isPresent", true);
+		
+		assertTrue(objFBool.hasBooleanMember("isPresent") == true);
+		assertTrue(objTBool.hasMember("isPresent"));
+		
 		
 	}
 }
