@@ -109,7 +109,7 @@ public class ObjectTests {
 		JSONObject objWarray = JSONFactory.createObject();
 		JSONArray arrayVal = JSONFactory.createArray(5);
 		objWarray.addMember("arrayVal", arrayVal);
-		assertTrue(objWstring.hasMember("arrayVal") && objWstring.getMember("arrayVal") instanceof JSONArray);
+		assertTrue(objWarray.hasMember("arrayVal") && objWarray.getMember("arrayVal") instanceof JSONArray);
 	}
 	
 	@Test
