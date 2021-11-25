@@ -17,7 +17,7 @@ import json.JSONParser;
 /**
  * Provides tests for the {@link JSONObject} class
  * 
- * @author james
+ * @author James Davis - c3576413
  *
  */
 public class ObjectTests {
