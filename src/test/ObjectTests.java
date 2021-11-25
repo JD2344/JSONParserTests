@@ -1,6 +1,7 @@
 package test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThrows;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assume.assumeFalse;
@@ -59,7 +60,6 @@ public class ObjectTests {
 		//TODO: maybe add whitespace check "{ \"isHere\":true }" <- this breaks it....
 		try {
 			JSONObject testVal = JSONParser.parse(object).asObject();
-			System.out.println(testVal + " " + object.toString());
 			assertEquals(testVal.toString(), object.toString());
 			
 		} catch (JSONException e) {
@@ -89,9 +89,12 @@ public class ObjectTests {
 		JSONObject objTBool = JSONFactory.createObject();
 		objTBool.addMember("isPresent", true);
 		
-		assertTrue(objFBool.hasBooleanMember("isPresent") == true);
+		assertTrue(objTBool.hasBooleanMember("isPresent") == true);
 		assertTrue(objTBool.hasMember("isPresent"));
 		
+		JSONObject objNotBool = JSONFactory.createObject();
+		objNotBool.addMember("aMember");
 		
+		assertFalse(objNotBool.hasBooleanMember("aMember"));
 	}
 }
