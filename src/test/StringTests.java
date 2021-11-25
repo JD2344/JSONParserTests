@@ -46,7 +46,6 @@ public class StringTests {
 	@ValueSource(strings = { "", "hellothere" })
 	public void testToString(String testVal) {
 		JSONString test = JSONFactory.createString(testVal);
-		System.out.println(test.toString() + " "+ testVal);
 		if (test == JSONString.JSON_EMPTY_STRING)
 			assertTrue(test.toString().contains("\"\""));
 		else
@@ -58,10 +57,23 @@ public class StringTests {
 	public void testAsString(String testValue) {
 		JSONString test = JSONFactory.createString(testValue);
 		try {
-			assertTrue(test.asString() == testValue);
+			assertEquals(test.asString(), testValue);
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	@Test
+	public void testgetString() {
+		JSONString test = JSONFactory.createString("this is my string here");
+		assertEquals(test.getString(), "this is my string here");
+		assertTrue(test.isString());
+	}
+	
+	@Test
+	public void testHashcode() {
+		JSONString testVal = JSONFactory.createString("hello");
+		assertEquals(testVal.hashCode(), 99162322);
 	}
 
 	/**
