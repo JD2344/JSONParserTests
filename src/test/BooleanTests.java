@@ -28,7 +28,8 @@ public class BooleanTests {
 		
 		assertTrue(firstVal instanceof JSONBoolean);
 		assertTrue(firstVal.isBoolean());
-		assumeTrue(firstVal.asBoolean() != true);
+		assumeTrue(firstVal.asBoolean() == false);
+		assumeFalse(firstVal.asBoolean() == true);
 	}
 	
 	/**
@@ -79,6 +80,6 @@ public class BooleanTests {
 		JSONBoolean duplicateT = JSONFactory.createBoolean(true);
 		assumeTrue(falseB.equals(duplicateF));
 		assumeTrue(trueB.equals(duplicateT));
-		assumeFalse(falseB.asBoolean() != true);
+		assumeFalse(falseB.asBoolean() == true);
 	}
 }
