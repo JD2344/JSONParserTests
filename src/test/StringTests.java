@@ -22,7 +22,6 @@ import json.JSONString;
  * @author James Davis - c3576413
  *
  */
-@TestInstance(Lifecycle.PER_CLASS)
 public class StringTests {
 
 	@Test
