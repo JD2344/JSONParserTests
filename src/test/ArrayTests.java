@@ -101,24 +101,30 @@ public class ArrayTests {
 				JSONValue value = testingArray.get(index);
 				System.out.println(value.toString());
 				
-				if (value.isNull())
-					assertTrue(value instanceof JSONNull);
+				if (value.isNull()) {
+					assertTrue(value instanceof JSONNull);					
+				}
 				
-				if (value.isObject())
+				if (value.isObject()) {
 					assertTrue(value instanceof JSONObject);
-					assertEquals(value.asObject(), testingArray.get(index).asObject());
+					assertEquals(value.asObject(), testingArray.get(index).asObject());					
+				}
 				
-				if (value.isArray())
-					assertTrue(value instanceof JSONArray);
+				if (value.isArray()) {
+					assertTrue(value instanceof JSONArray);					
+				}
 				
-				if (value.isBoolean())
-					assertTrue(value instanceof JSONBoolean);
+				if (value.isBoolean()) {
+					assertTrue(value instanceof JSONBoolean);					
+				}
 				
-				if (value.isNumber())
-					assertTrue(value instanceof JSONNumber);
+				if (value.isNumber()) {
+					assertTrue(value instanceof JSONNumber);					
+				}
 				
-				if (value.isString())
-					assertTrue(value instanceof JSONString);				
+				if (value.isString()) {
+					assertTrue(value instanceof JSONString);									
+				}
 			} catch (JSONException e) {
 				e.printStackTrace();
 			}
