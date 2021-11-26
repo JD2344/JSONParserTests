@@ -111,19 +111,22 @@ public class ArrayTests {
 				}
 				
 				if (value.isArray()) {
-					assertTrue(value instanceof JSONArray);					
+					assertTrue(value instanceof JSONArray);
+					assertEquals(value.asArray(), testingArray.get(index).asArray());
 				}
 				
 				if (value.isBoolean()) {
-					assertTrue(value instanceof JSONBoolean);					
+					assertTrue(value instanceof JSONBoolean);	
+					assertEquals(value.asBoolean(), testingArray.get(index).asBoolean());				
 				}
 				
 				if (value.isNumber()) {
-					assertTrue(value instanceof JSONNumber);					
+					assertTrue(value instanceof JSONNumber);			
 				}
 				
 				if (value.isString()) {
-					assertTrue(value instanceof JSONString);									
+					assertTrue(value instanceof JSONString);	
+					assertEquals(value.asString(), testingArray.get(index).asString());								
 				}
 			} catch (JSONException e) {
 				e.printStackTrace();
