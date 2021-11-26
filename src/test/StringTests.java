@@ -77,8 +77,10 @@ public class StringTests {
 	}
 
 	/**
-	 * Helper function to encode a string in such a way like the {@link JSONString}
+	 * Helper function to encode a string in such a way like the {@link JSONString#encode(String, StringBuilder)}
 	 * encoder handles it.
+	 * 
+	 * This is to allow a bit for bit comparison so i can compare both outputs in comparison
 	 * 
 	 * @param testVal - The value to test
 	 * @return The encoded string value
