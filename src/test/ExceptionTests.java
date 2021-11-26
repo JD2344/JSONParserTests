@@ -32,12 +32,16 @@ public class ExceptionTests {
 			if(!val.isString()) {
 				assertThrows(JSONException.class, () -> val.asString());
 			}
-			assertThrows(JSONException.class, () -> val.asByte());
-			assertThrows(JSONException.class, () -> val.asShort());
-			assertThrows(JSONException.class, () -> val.asInteger());
-			assertThrows(JSONException.class, () -> val.asLong());
-			assertThrows(JSONException.class, () -> val.asFloat());
-			assertThrows(JSONException.class, () -> val.asDouble());
+			
+			if(!val.isNumber()) {
+				assertThrows(JSONException.class, () -> val.asByte());
+				assertThrows(JSONException.class, () -> val.asShort());
+				assertThrows(JSONException.class, () -> val.asInteger());
+				assertThrows(JSONException.class, () -> val.asLong());
+				assertThrows(JSONException.class, () -> val.asFloat());
+				assertThrows(JSONException.class, () -> val.asDouble());				
+			}
+			
 			if(!val.isBoolean()) {
 				assertThrows(JSONException.class, () -> val.asBoolean());				
 			}
