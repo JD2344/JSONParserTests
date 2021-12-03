@@ -67,32 +67,31 @@ public class NumberTests {
 	}
 	
 	@Test
-	//TODO: fix this shit. wtf man..
 	public void testAsType() {
 		JSONNumber withInt = JSONFactory.createNumber(1);
 		JSONNumber withDouble = JSONFactory.createNumber(10.2);
 		JSONNumber withFloat = JSONFactory.createNumber(22.412312343f);
 		JSONNumber withLong = JSONFactory.createNumber(213425245l);
-		/*
+		
 		try {
 			assertEquals(withInt.asInteger(), 1);
 			
-			assertEquals(withDouble.asDouble(), 10.2);
-			assertEquals(withDouble.asDouble() == 10.2);
-			assertEquals(withFloat.asDouble() == 22.412312343f);
-			assertEquals(withLong.asDouble() == 213425245l);
+			assertTrue(withDouble.asDouble() == 10.2);
+			assertTrue(withDouble.asDouble() == 10.2);
+			assertTrue(withFloat.asDouble() == 22.412312343f);
+			assertTrue(withLong.asDouble() == 213425245l);
 			
-			assertEquals(withFloat.asFloat() == 22.412312343f);
-			//assertTrue(withDouble.asFloat() == 10.2);
+			assertTrue(withFloat.asFloat() == 22.412312343f);
+			assertTrue(withDouble.asFloat() == 10.2);
 			//assertTrue(withInt.asFloat() == 1);
 			//assertTrue(withLong.asFloat() == 2134254542);
 			
-			assertEquals(withLong.asLong() == 213425245l);
-			assertEquals(withInt.asLong() == 1);
+			//assertTrue(withLong.asLong() == 213425245l);
+			//assertTrue(withInt.asLong() == 1);
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		*/
+		
 	}
 }
