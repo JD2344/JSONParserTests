@@ -2,11 +2,17 @@ package test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assume.assumeFalse;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Collection;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import json.JSONArray;
@@ -15,6 +21,7 @@ import json.JSONFactory;
 import json.JSONObject;
 import json.JSONParser;
 import json.JSONString;
+import json.JSONValue;
 
 /**
  * Provides tests for the {@link JSONObject} class
@@ -23,7 +30,37 @@ import json.JSONString;
  *
  */
 public class ObjectTests {
-
+	
+	@BeforeAll
+	public static void jsonInputTest() {
+		try {
+			JSONValue parsedValue = JSONParser
+					.parseFile(System.getProperty("user.dir") + "/src/jsonFiles/Testing.json");
+			
+			JSONObject convertedValue = parsedValue.asObject();
+			
+			assertTrue(convertedValue.size() == 11);
+			
+			assertSame(parsedValue, convertedValue);
+			
+			Collection<JSONValue> values = convertedValue.values();
+			
+			assertEquals(values.stream().count(), convertedValue.size());
+			
+			//TODO:Iterate all values in JSONTest file
+			//Check corresponding names and then check values alongside one another. 
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 	/**
 	 * Tests the constructors for the {@link JSONObject} class
 	 */
