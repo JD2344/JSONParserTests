@@ -4,6 +4,7 @@ import static org.junit.Assert.assertThrows;
 
 import java.io.IOException;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -18,7 +19,8 @@ import json.JSONValue;
  *
  */
 public class ExceptionTests {
-
+	
+	@DisplayName("Test Exception tests of object conversions")
 	@ParameterizedTest
 	@ValueSource(strings = { "\"key\"", "{}", "[]", "true", "10.2", 
 			"22.4434343f", "2139292929", "1" })
