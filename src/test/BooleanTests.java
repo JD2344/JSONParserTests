@@ -5,6 +5,7 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assume.assumeFalse;
 import static org.junit.Assume.assumeTrue;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -22,6 +23,7 @@ public class BooleanTests {
 	/**
 	 * Tests the {@link JSONBoolean} constructor
 	 */
+	@DisplayName("Test of all boolean initializers")
 	@Test
 	public void testBooleanInit() {
 		JSONBoolean firstVal = JSONFactory.createBoolean(false);
@@ -35,6 +37,7 @@ public class BooleanTests {
 	/**
 	 * Checks that the toString() Method works
 	 */
+	@DisplayName("Test of to string methods")
 	@Test
 	public void testToString() {
 		JSONBoolean firstVal = JSONFactory.createBoolean(false);
@@ -49,6 +52,7 @@ public class BooleanTests {
 	/**
 	 * Provides test for {@link JSONBoolean} asBoolean()
 	 */
+	@DisplayName("Test object conversions as boolean")
 	@ParameterizedTest
 	@ValueSource(booleans = { true, false })
 	public void testAsBoolean(boolean testVal) {
@@ -59,6 +63,7 @@ public class BooleanTests {
 	/**
 	 * Test the {@link JSONBoolean} hashcode functionality
 	 */
+	@DisplayName("Test hascodes of boolean Class")
 	@Test
 	public void testHashCodes() {
 		JSONBoolean firstBool = JSONFactory.createBoolean(true);
@@ -71,6 +76,7 @@ public class BooleanTests {
 	/**
 	 * Test the {@link JSONBoolean} equals method
 	 */
+	@DisplayName("Test the boolean equals method")
 	@RepeatedTest(5)
 	public void testEquals() {
 		JSONBoolean falseB = JSONFactory.createBoolean(false);
