@@ -1,6 +1,7 @@
 package test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThrows;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.jupiter.api.DisplayName;
@@ -79,31 +80,38 @@ public class NumberTests {
 		JSONNumber withInt = JSONFactory.createNumber(1);
 		JSONNumber withDouble = JSONFactory.createNumber(10.2);
 		JSONNumber withFloat = JSONFactory.createNumber(22.412312343f);
-		JSONNumber withLong = JSONFactory.createNumber(213425245l);
+		JSONNumber withLong = JSONFactory.createNumber(213425245282883838L);
 		
 		try {
+			//Test {@link JSONNumber#asInteger()}
 			assertEquals(withInt.asInteger(), 1);
+			assertThrows(JSONException.class, () -> withDouble.asInteger());
 			
-			assertTrue(withDouble.asDouble() == 10.2);
-			assertTrue(withDouble.asDouble() == 10.2);
-			assertTrue(withFloat.asDouble() == 22.412312343f);
-			assertTrue(withLong.asDouble() == 213425245l);
+			//Test {@link JSONNumber#asDouble()}
+			assertEquals(withInt.asDouble(), 1, 0);
+			assertEquals(withDouble.asDouble(), 10.2, 0);
+			assertEquals(withFloat.asDouble(), 22.412312343f, 0);
+			assertEquals(withLong.asDouble(), 213425245282883838L, 0);
 			
-			assertTrue(withFloat.asFloat() == 22.412312343f);
+			//Test {@link JSONNumber#asFloat()}
+			assertEquals(withInt.asFloat(), 1, 0);
+			assertEquals(withLong.asFloat(), 213425245282883838L, 0);
+			assertEquals(withFloat.asFloat(), 22.412312343f, 0);
+			assertEquals(withDouble.asFloat(), ((Double)10.2).floatValue(), 0);
 			
-			/**
-			 * Ensure values tested here are valid for the corresponding 
-			 * .as() Method within {@link JSONNumber} Ensure that 
-			 * Value is returned correctly, and also make sure any exceptions are thrown if hit. 
-			 * 
-			 */
+			//Test {@link JSONNumber#asLong()}			
+			assertEquals(withLong.asLong(), 213425245282883838L, 0);
+			assertEquals(withInt.asLong(), 1, 0);
+			assertThrows(JSONException.class, () -> withDouble.asLong());
 			
-			//assertTrue(withDouble.asFloat() == 10.2);
-			//assertTrue(withInt.asFloat() == 1);
-			//assertTrue(withLong.asFloat() == 2134254542);
+			//Test {@link JSONNumber#asByte()}
+			assertEquals(withInt.asShort(), 1, 0);
+			assertThrows(JSONException.class, () -> withDouble.asShort());
 			
-			//assertTrue(withLong.asLong() == 213425245l);
-			//assertTrue(withInt.asLong() == 1);
+			//Test {@link JSONNumber#asByte()}
+			assertEquals(withInt.asByte(), 1, 0);
+			assertThrows(JSONException.class, () -> withDouble.asByte());
+			
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
