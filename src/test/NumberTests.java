@@ -90,6 +90,14 @@ public class NumberTests {
 			assertTrue(withLong.asDouble() == 213425245l);
 			
 			assertTrue(withFloat.asFloat() == 22.412312343f);
+			
+			/**
+			 * Ensure values tested here are valid for the corresponding 
+			 * .as() Method within {@link JSONNumber} Ensure that 
+			 * Value is returned correctly, and also make sure any exceptions are thrown if hit. 
+			 * 
+			 */
+			
 			//assertTrue(withDouble.asFloat() == 10.2);
 			//assertTrue(withInt.asFloat() == 1);
 			//assertTrue(withLong.asFloat() == 2134254542);
