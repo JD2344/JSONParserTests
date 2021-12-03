@@ -72,13 +72,13 @@ public class NullTests {
 	 */
 	@Test
 	public void testEquals() {
-		
+		//TODO: implement this
 	}
 	
 	@Test
 	public void testAppend() {
 		JSONValue testArray = JSONFactory.createArray();
 		JSONObject testObject = JSONFactory.createObject();
-		
+		//TODO:IMplement this
 	}
 }
