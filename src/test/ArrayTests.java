@@ -6,6 +6,8 @@ import static org.junit.Assert.assertTrue;
 import java.io.IOException;
 
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -53,6 +55,7 @@ public class ArrayTests {
 	/**
 	 * Tests the constructors of the {@link JSONArray} class
 	 */
+	@DisplayName("Test of all array initializers")
 	@Test
 	public void testArrayInits() {
 		JSONArray firstA = JSONFactory.createArray();
@@ -74,6 +77,7 @@ public class ArrayTests {
 	/**
 	 * Tests some of the basic functions of the {@link JSONArray} class
 	 */
+	@DisplayName("Test of all array methods")
 	@Test
 	public void testArrayMethods() {
 		JSONArray firstA = JSONFactory.createArray();
@@ -93,6 +97,7 @@ public class ArrayTests {
 	/**
 	 * Provides testing functionality for the {@link JSONArray} .add() methods
 	 */
+	@DisplayName("Test of adding values into arrays")
 	@Test
 	public void testAddValueMethods() {
 		for (int index = 0; index < testingArray.size(); index++) {
