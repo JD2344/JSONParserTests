@@ -1,20 +1,20 @@
 package test;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThrows;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.RepeatedTest;
+import java.io.IOException;
+
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInstance;
-import org.junit.jupiter.api.TestInstance.Lifecycle;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import json.JSONException;
 import json.JSONFactory;
+import json.JSONParser;
 import json.JSONString;
+import json.JSONValue;
 
 /**
  * Tests the functionality of the {@link JSONString} class
@@ -31,7 +31,8 @@ public class StringTests {
 	}
 
 	@ParameterizedTest
-	@ValueSource(strings = { "\"", "\\", "/", "\b", "\f", "\n", "\r", "\t" })
+	@ValueSource(strings = { "\"", "\\", "/", "\b", "\f", 
+			"\n", "\r", "\t", "" })
 	public void testEncoder(String testVal) {
 		StringBuilder sb = new StringBuilder();
 		String encodedCompare = buildEncodedString(testVal);
@@ -74,6 +75,37 @@ public class StringTests {
 		JSONString testVal = JSONFactory.createString("hello");
 		assertEquals(testVal.hashCode(), 99162322);
 	}
+	
+	@Test
+	public void testEquals() {
+		String s = "a test string";
+		JSONString jString = JSONFactory.createString(s);
+		JSONString jSCopy = jString;
+		JSONString nullString = JSONString.JSON_EMPTY_STRING;
+		JSONString test = JSONFactory.createString("this string");
+		
+		assertFalse(jString.equals(s));
+		assertTrue(jSCopy.equals(jString));
+		assertTrue(JSONString.JSON_EMPTY_STRING.equals(nullString));
+		assertFalse(test.equals(s));
+	}
+	
+	@Test
+	public void testAppend() {
+		try {
+			JSONValue firstVal = JSONParser.parse("{\"value\":\"myString\"}");
+			JSONValue secVal = JSONParser.parse("{\"value\":\"\"}");
+			
+			assertEquals(firstVal.toString(), "{\"value\":\"myString\"}");
+			assertEquals(secVal.toString(), "{\"value\":\"\"\"\"}");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 	/**
 	 * Helper function to encode a string in such a way like the {@link JSONString#encode(String, StringBuilder)}
@@ -110,7 +142,17 @@ public class StringTests {
 				builder.append("\\t");
 				break;
 			default:
-				return "\"\\" + testVal + "\"";
+				if (Character.isISOControl(c)) {
+					// is a control character, so output as four hex digits.					
+					if (c < 0x100) {
+						builder.append((c < 0x10) ? "\\u000" : "\\u00");
+					} else {
+						builder.append((c < 0x1000) ? "\\u0" : "\\u");
+					}
+					builder.append(Integer.toHexString(c));
+				} else
+					// regular character.
+					builder.append(c);
 			}
 		}
 		builder.append('\"');
