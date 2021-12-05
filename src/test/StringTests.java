@@ -29,11 +29,19 @@ public class StringTests {
 		JSONString s = JSONFactory.createString("testString");
 		assertTrue(s instanceof JSONString);
 	}
-
+	
+	/**
+	 * Test functionality of the {@link JSONString#encode(String, StringBuilder)} method.
+	 * 
+	 * NOTE: ISOControl Chars cannot be reached using this method
+	 * Each individual 'char' is treated separately and therefore
+	 * prevents this functionality from being reached. 
+	 * 
+	 * @param testVal - The value to test
+	 */
 	@ParameterizedTest
 	@ValueSource(strings = { "\"", "\\", "/", "\b", "\f", 
-			"\n", "\r", "\t", "\\u041" })
-	//TODO:SEE if isocontrol can be hit... 
+			"\n", "\r", "\t" })
 	public void testEncoder(String testVal) {
 		StringBuilder sb = new StringBuilder();
 		String encodedCompare = buildEncodedString(testVal);
