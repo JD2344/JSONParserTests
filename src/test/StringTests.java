@@ -32,7 +32,8 @@ public class StringTests {
 
 	@ParameterizedTest
 	@ValueSource(strings = { "\"", "\\", "/", "\b", "\f", 
-			"\n", "\r", "\t", "" })
+			"\n", "\r", "\t", "\\u041" })
+	//TODO:SEE if isocontrol can be hit... 
 	public void testEncoder(String testVal) {
 		StringBuilder sb = new StringBuilder();
 		String encodedCompare = buildEncodedString(testVal);
@@ -118,10 +119,33 @@ public class StringTests {
 	 */
 	private String buildEncodedString(String testVal) {
 		StringBuilder builder = new StringBuilder();
+
+		// The value is a String type, so place within quotes and encode special characters.
 		builder.append('\"');
-		for (int i = 0; i < testVal.length(); i++) {
-			char c = testVal.charAt(i);
+
+		String str = (String) testVal;
+
+		int len = str.length();
+
+		for (int i = 0; i < len; i++) {
+
+			char c = str.charAt(i);
+
+			// Check for any characters which require encoding.
 			switch (c) {
+
+			case '"':
+				builder.append("\\\"");
+				break;
+
+			case '\\':
+				builder.append("\\\\");
+				break;
+
+			case '/':
+				builder.append("\\/");
+				break;
+
 			case '\b':
 				builder.append("\\b");
 				break;
@@ -141,7 +165,9 @@ public class StringTests {
 			case '\t':
 				builder.append("\\t");
 				break;
+
 			default:
+
 				if (Character.isISOControl(c)) {
 					// is a control character, so output as four hex digits.					
 					if (c < 0x100) {
@@ -155,6 +181,7 @@ public class StringTests {
 					builder.append(c);
 			}
 		}
+
 		builder.append('\"');
 
 		return builder.toString();
