@@ -113,6 +113,14 @@ public class ObjectTests {
 		}
 	}
 	
+	/**
+	 * Tests adding members to an object and checks validity of 
+	 * whether it was added and present.
+	 * 
+	 * NOTE: {@link JSONObject#hasBooleanMember(String)} method
+	 * has an exception, this cannot be reached as type checking
+	 * eliminates this ever happening
+	 */
 	@Test
 	public void testAddMember() {
 		JSONObject objWNull = JSONFactory.createObject();
