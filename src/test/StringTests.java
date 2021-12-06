@@ -6,6 +6,7 @@ import static org.junit.Assert.assertTrue;
 
 import java.io.IOException;
 
+import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -79,7 +80,7 @@ public class StringTests {
 		assertTrue(test.isString());
 	}
 	
-	@Test
+	@RepeatedTest(3)
 	public void testHashcode() {
 		JSONString testVal = JSONFactory.createString("hello");
 		assertEquals(testVal.hashCode(), 99162322);
