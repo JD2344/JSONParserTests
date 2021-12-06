@@ -175,18 +175,7 @@ public class StringTests {
 				break;
 
 			default:
-
-				if (Character.isISOControl(c)) {
-					// is a control character, so output as four hex digits.					
-					if (c < 0x100) {
-						builder.append((c < 0x10) ? "\\u000" : "\\u00");
-					} else {
-						builder.append((c < 0x1000) ? "\\u0" : "\\u");
-					}
-					builder.append(Integer.toHexString(c));
-				} else
-					// regular character.
-					builder.append(c);
+				return "\"\\" + testVal + "\"";
 			}
 		}
 
