@@ -106,7 +106,6 @@ public class ArrayTests {
 			
 			try {
 				JSONValue value = testingArray.get(index);
-				System.out.println(value.toString());
 				
 				if (value.isNull()) {
 					assertTrue(value instanceof JSONNull);					
