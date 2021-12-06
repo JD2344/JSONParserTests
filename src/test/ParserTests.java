@@ -6,6 +6,8 @@ import static org.junit.Assert.assertTrue;
 import java.io.IOException;
 import java.io.StringReader;
 
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -24,7 +26,7 @@ public class ParserTests {
 	/**
 	 * Tests the parser functionality
 	 */
-	@Test
+	@RepeatedTest(5)
 	public void testParsers() {
 		try {
 			JSONValue firstParsed = JSONParser.parse("{}");
