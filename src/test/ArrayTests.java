@@ -5,9 +5,11 @@ import static org.junit.Assert.assertTrue;
 
 import java.io.IOException;
 
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -33,7 +35,7 @@ public class ArrayTests {
 	/**
 	 * A default array of values
 	 */
-	private JSONArray testingArray;
+	private static JSONArray testingArray;
 
 	/**
 	 * Builds a new {@link JSONArray} with values of all types
@@ -49,7 +51,7 @@ public class ArrayTests {
 		finishedA.addValue(21475963l);
 		finishedA.addValue("hello");
 		finishedA.addValue();
-		this.testingArray = finishedA;
+		ArrayTests.testingArray = finishedA;
 	}
 
 	/**
@@ -78,7 +80,7 @@ public class ArrayTests {
 	 * Tests some of the basic functions of the {@link JSONArray} class
 	 */
 	@DisplayName("Test of all array methods")
-	@Test
+	@RepeatedTest(5)
 	public void testArrayMethods() {
 		JSONArray firstA = JSONFactory.createArray();
 		JSONArray copyA = firstA.copy();
@@ -98,8 +100,8 @@ public class ArrayTests {
 	 * Provides testing functionality for the {@link JSONArray} .add() methods
 	 */
 	@DisplayName("Test of adding values into arrays")
-	@Test
-	public void testAddValueMethods() {
+	@AfterAll
+	public static void testAddValueMethods() {
 		for (int index = 0; index < testingArray.size(); index++) {
 			
 			try {
