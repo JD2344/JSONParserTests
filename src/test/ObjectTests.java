@@ -31,26 +31,24 @@ import json.JSONValue;
  */
 public class ObjectTests {
 	private static JSONValue parsedValue;
-	
-	
+
 	@BeforeAll
 	public static void jsonInputTest() {
 		try {
-			parsedValue = JSONParser
-					.parseFile(System.getProperty("user.dir") + "/src/jsonFiles/Testing.json");
-			
+			parsedValue = JSONParser.parseFile(System.getProperty("user.dir") + "/src/jsonFiles/Testing.json");
+
 			JSONObject convertedValue = parsedValue.asObject();
-			
+
 			assertTrue(convertedValue.size() == 11);
-			
+
 			assertSame(parsedValue, convertedValue);
-			
+
 			Collection<JSONValue> values = convertedValue.values();
-			
+
 			assertEquals(values.stream().count(), convertedValue.size());
-			
-			//TODO:Iterate all values in JSONTest file
-			//Check corresponding names and then check values alongside one another. 
+
+			// TODO:Iterate all values in JSONTest file
+			// Check corresponding names and then check values alongside one another.
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -62,7 +60,7 @@ public class ObjectTests {
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
 	 * Tests the constructors for the {@link JSONObject} class
 	 */
@@ -93,19 +91,19 @@ public class ObjectTests {
 			e.printStackTrace();
 		}
 	}
-	
+
 	@Test
 	public void testToString() {
 		String object = "{\"isHere\":true}";
 		String multiObject = "{\"item1\":\"string1\",\"item2\":\"string2\"}";
-		//TODO: maybe add whitespace check "{ \"isHere\":true }" <- this breaks it....
+		// TODO: maybe add whitespace check "{ \"isHere\":true }" <- this breaks it....
 		try {
 			JSONObject testVal = JSONParser.parse(object).asObject();
 			assertEquals(testVal.toString(), object.toString());
-			
+
 			JSONObject multiVal = JSONParser.parse(multiObject).asObject();
 			assertEquals(multiVal.toString(), multiObject.toString());
-			
+
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -114,7 +112,7 @@ public class ObjectTests {
 			e.printStackTrace();
 		}
 	}
-	
+
 	@Test
 	public void testHashCode() {
 		try {
@@ -125,14 +123,29 @@ public class ObjectTests {
 			e.printStackTrace();
 		}
 	}
+
+	@Test
+	//TODO:Finish this
+	public void testCopy() {
+		JSONObject object = JSONFactory.createObject();
+		JSONObject secCopy = object.copy();
+		assertSame(object, secCopy);
+	}
 	
+	@Test
+	public void testIsObject() {
+		JSONObject o = JSONFactory.createObject();
+		
+		if(o.isObject()) {
+			assertTrue(o.isObject());
+		}
+	}
 	/**
-	 * Tests adding members to an object and checks validity of 
-	 * whether it was added and present.
+	 * Tests adding members to an object and checks validity of whether it was added
+	 * and present.
 	 * 
-	 * NOTE: {@link JSONObject#hasBooleanMember(String)} method
-	 * has an exception, this cannot be reached as type checking
-	 * eliminates this ever happening
+	 * NOTE: {@link JSONObject#hasBooleanMember(String)} method has an exception,
+	 * this cannot be reached as type checking eliminates this ever happening
 	 */
 	@Test
 	public void testAddMember() {
@@ -141,49 +154,49 @@ public class ObjectTests {
 		assertEquals(objWNull.toString(), "{\"isPresent\":null}");
 		assertTrue(objWNull.hasMember("isPresent"));
 		assumeFalse(objWNull.hasMember("testmember"));
-		
+
 		JSONObject objFBool = JSONFactory.createObject();
 		objFBool.addMember("isPresent", false);
 		assertTrue(objFBool.hasMember("isPresent"));
 		assertTrue(objFBool.hasBooleanMember("isPresent") == false);
-		
+
 		JSONObject objTBool = JSONFactory.createObject();
 		objTBool.addMember("isPresent", true);
 		assertTrue(objTBool.hasBooleanMember("isPresent") == true);
 		assertTrue(objTBool.hasMember("isPresent"));
-	
+
 		JSONObject objNotBool = JSONFactory.createObject();
 		objNotBool.addMember("aMember");
 		assertFalse(objNotBool.hasBooleanMember("aMember"));
-		
+
 		JSONObject objWobj = JSONFactory.createObject();
 		objWobj.addMember("nestedObject", objWNull);
 		assertTrue(objWobj.hasMember("nestedObject") && objWobj.getMember("nestedObject") instanceof JSONObject);
-		
+
 		JSONObject objWstring = JSONFactory.createObject();
 		objWstring.addMember("string", "stringVal");
 		assertTrue(objWstring.hasMember("string") && objWstring.getMember("string") instanceof JSONString);
-		
+
 		JSONObject objWarray = JSONFactory.createObject();
 		JSONArray arrayVal = JSONFactory.createArray(5);
 		objWarray.addMember("arrayVal", arrayVal);
 		assertTrue(objWarray.hasMember("arrayVal") && objWarray.getMember("arrayVal") instanceof JSONArray);
 	}
-	
+
 	@Test
 	public void testAddNumbers() {
 		JSONObject objWlong = JSONFactory.createObject();
 		JSONObject objWfloat = JSONFactory.createObject();
 		JSONObject objWdouble = JSONFactory.createObject();
-		
+
 		objWlong.addMember("longVal", 2939438383l);
 		assertTrue(objWlong.hasMember("longVal"));
 		assertTrue(objWlong.getMember("longVal").isNumber());
-		
+
 		objWfloat.addMember("floatVal", 23.3232323232f);
 		assertTrue(objWfloat.hasMember("floatVal"));
 		assertTrue(objWfloat.getMember("floatVal").isNumber());
-		
+
 		objWdouble.addMember("doubleVal", 10.2);
 		assertTrue(objWdouble.hasMember("doubleVal"));
 		assertTrue(objWdouble.getMember("doubleVal").isNumber());
