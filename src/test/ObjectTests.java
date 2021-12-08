@@ -30,11 +30,13 @@ import json.JSONValue;
  *
  */
 public class ObjectTests {
+	private static JSONValue parsedValue;
+	
 	
 	@BeforeAll
 	public static void jsonInputTest() {
 		try {
-			JSONValue parsedValue = JSONParser
+			parsedValue = JSONParser
 					.parseFile(System.getProperty("user.dir") + "/src/jsonFiles/Testing.json");
 			
 			JSONObject convertedValue = parsedValue.asObject();
@@ -108,6 +110,17 @@ public class ObjectTests {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	@Test
+	public void testHashCode() {
+		try {
+			JSONObject testVal = parsedValue.asObject();
+			assertEquals(testVal.hashCode(), 2095311018);
+		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
