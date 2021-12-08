@@ -125,11 +125,10 @@ public class ObjectTests {
 	}
 
 	@Test
-	//TODO:Finish this
 	public void testCopy() {
 		JSONObject object = JSONFactory.createObject();
 		JSONObject secCopy = object.copy();
-		assertSame(object, secCopy);
+		assertEquals(object.toString(), secCopy.toString());
 	}
 	
 	@Test
