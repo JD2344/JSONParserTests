@@ -31,10 +31,10 @@ import json.JSONValue;
  */
 public class ObjectTests {
 	private static JSONValue parsedValue;
-	
+
 	/**
-	 * Test the values within an object and sure that they match a given
-	 * object size and values match.
+	 * Test the values within an object and sure that they match a given object size
+	 * and values match.
 	 */
 	@BeforeAll
 	public static void jsonInputTest() {
@@ -92,7 +92,7 @@ public class ObjectTests {
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
 	 * Test the {@link JSONObject#toString()} method
 	 */
@@ -130,7 +130,7 @@ public class ObjectTests {
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
 	 * Test a given copy of an object
 	 */
@@ -140,18 +140,19 @@ public class ObjectTests {
 		JSONObject secCopy = object.copy();
 		assertEquals(object.toString(), secCopy.toString());
 	}
-	
+
 	/**
 	 * Test an item is a {@link JSONObject}
 	 */
 	@Test
 	public void testIsObject() {
 		JSONObject o = JSONFactory.createObject();
-		
-		if(o.isObject()) {
+
+		if (o.isObject()) {
 			assertTrue(o.isObject());
 		}
 	}
+
 	/**
 	 * Tests adding members to an object and checks validity of whether it was added
 	 * and present.
@@ -196,8 +197,8 @@ public class ObjectTests {
 	}
 
 	/**
-	 * Checks all the given values within an object
-	 * and checks that they are present with the correct name
+	 * Checks all the given values within an object and checks that they are present
+	 * with the correct name
 	 */
 	@Test
 	public void testAddNumbers() {
