@@ -31,7 +31,11 @@ import json.JSONValue;
  */
 public class ObjectTests {
 	private static JSONValue parsedValue;
-
+	
+	/**
+	 * Test the values within an object and sure that they match a given
+	 * object size and values match.
+	 */
 	@BeforeAll
 	public static void jsonInputTest() {
 		try {
@@ -50,13 +54,10 @@ public class ObjectTests {
 			// TODO:Iterate all values in JSONTest file
 			// Check corresponding names and then check values alongside one another.
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (JSONException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -91,7 +92,10 @@ public class ObjectTests {
 			e.printStackTrace();
 		}
 	}
-
+	
+	/**
+	 * Test the {@link JSONObject#toString()} method
+	 */
 	@Test
 	public void testToString() {
 		String object = "{\"isHere\":true}";
@@ -113,6 +117,9 @@ public class ObjectTests {
 		}
 	}
 
+	/**
+	 * Test the {@link JSONObject#hashCode()} method
+	 */
 	@Test
 	public void testHashCode() {
 		try {
@@ -123,7 +130,10 @@ public class ObjectTests {
 			e.printStackTrace();
 		}
 	}
-
+	
+	/**
+	 * Test a given copy of an object
+	 */
 	@Test
 	public void testCopy() {
 		JSONObject object = JSONFactory.createObject();
@@ -131,6 +141,9 @@ public class ObjectTests {
 		assertEquals(object.toString(), secCopy.toString());
 	}
 	
+	/**
+	 * Test an item is a {@link JSONObject}
+	 */
 	@Test
 	public void testIsObject() {
 		JSONObject o = JSONFactory.createObject();
@@ -182,6 +195,10 @@ public class ObjectTests {
 		assertTrue(objWarray.hasMember("arrayVal") && objWarray.getMember("arrayVal") instanceof JSONArray);
 	}
 
+	/**
+	 * Checks all the given values within an object
+	 * and checks that they are present with the correct name
+	 */
 	@Test
 	public void testAddNumbers() {
 		JSONObject objWlong = JSONFactory.createObject();
