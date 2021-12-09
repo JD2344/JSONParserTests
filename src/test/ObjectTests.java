@@ -9,8 +9,11 @@ import static org.junit.Assume.assumeFalse;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -51,8 +54,20 @@ public class ObjectTests {
 
 			assertEquals(values.stream().count(), convertedValue.size());
 
-			// TODO:Iterate all values in JSONTest file
-			// Check corresponding names and then check values alongside one another.
+			/*
+			 * Not an amazing way of comparing keys/ values
+			 * performs the bare minimum but it works...
+			 */
+			Set<String> keys = convertedValue.members();
+			Iterator<Entry<String, JSONValue>> items = convertedValue.iterator();
+			
+			while(items.hasNext()) {
+				Entry<String, JSONValue> nextVal = items.next();
+				
+				assertTrue(keys.contains(nextVal.getKey()));
+				assertTrue(values.contains(nextVal.getValue()));
+			}
+			
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
