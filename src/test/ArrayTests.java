@@ -1,6 +1,7 @@
 package test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
 
 import java.io.IOException;
@@ -94,6 +95,37 @@ public class ArrayTests {
 
 		assertEquals(firstA.toString(), "[]");
 		assertEquals(thirdA.toString(), "[false]");
+	}
+	
+	@Test
+	public void testHashCode() {
+		//Hash: 1268
+		JSONArray ja = JSONFactory.createArray();
+		ja.addValue(false);
+		assertTrue(ja.hashCode() == 1268);
+	}
+	
+	/**
+	 * Sloppy way to test adding {@link JSONValue} to an 
+	 * array
+	 */
+	@Test
+	public void testAddJSONVal() {
+		JSONArray a = JSONFactory.createArray();
+		
+		try {
+			JSONValue val = JSONParser.parse("10");
+			a.addValue(val);
+			
+			assertTrue(a.get(0).asInteger() == 10);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 
 	/**
