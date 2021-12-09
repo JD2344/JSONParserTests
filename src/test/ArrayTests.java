@@ -92,7 +92,7 @@ public class ArrayTests {
 		assertEquals(thirdA.toString(), "[false]");
 	}
 	
-	@Test
+	@RepeatedTest(3)
 	public void testHashCode() {
 		//Hash: 1268
 		JSONArray ja = JSONFactory.createArray();
