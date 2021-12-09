@@ -25,10 +25,19 @@ import json.JSONValue;
  */
 public class StringTests {
 
-	@Test
-	public void testConstructor() {
-		JSONString s = JSONFactory.createString("testString");
+	@ParameterizedTest
+	@ValueSource(strings = { "testString", ""})
+	public void testConstructor(String testVal) {
+		JSONString s = JSONFactory.createString(testVal);
 		assertTrue(s instanceof JSONString);
+	}
+	
+	@Test
+	public void testNullStringConstructor() {
+		JSONString tv = JSONFactory.createString(null);
+		assertTrue(tv instanceof JSONString);
+		assertEquals(tv.toString(), JSONString.JSON_EMPTY_STRING.toString());
+		
 	}
 	
 	/**
