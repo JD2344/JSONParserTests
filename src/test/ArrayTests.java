@@ -159,7 +159,15 @@ public class ArrayTests {
 				}
 				
 				if (value.isNumber()) {
-					assertTrue(value instanceof JSONNumber);			
+					assertTrue(value instanceof JSONNumber);
+					
+					//TODO:Potentially check all numbers and verify return val
+					/*JSONValue num = testingArray.get(index);
+					try {
+						num.as
+					} catch (JSONException e) {
+						
+					}*/
 				}
 				
 				if (value.isString()) {
