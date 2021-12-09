@@ -30,6 +30,12 @@ public class NullTests {
 		nullstring = "null";
 	}
 	
+	@Test
+	public void testCreateNull() {
+		JSONNull jn = JSONFactory.createNull();
+		assertTrue(jn instanceof JSONNull);
+	}
+	
 	/**
 	 * Test isNull
 	 */
