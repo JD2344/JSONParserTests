@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThrows;
 import static org.junit.Assert.assertTrue;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -82,8 +83,8 @@ public class NumberTests {
 	}
 
 	@DisplayName("Test the number types")
-	@Test
-	public void testAsType() {
+	@BeforeAll
+	public static void testAsType() {
 		JSONNumber withInt = JSONFactory.createNumber(1);
 		JSONNumber withDouble = JSONFactory.createNumber(10.2);
 		JSONNumber withFloat = JSONFactory.createNumber(22.412312343f);
