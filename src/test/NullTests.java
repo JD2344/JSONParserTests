@@ -4,14 +4,18 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
+import java.io.IOException;
+
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 
 import json.JSONArray;
+import json.JSONException;
 import json.JSONFactory;
 import json.JSONNull;
 import json.JSONObject;
+import json.JSONParser;
 import json.JSONValue;
 
 /**
@@ -80,12 +84,5 @@ public class NullTests {
 	public void testEquals() {
 		JSONNull tn = JSONNull.JSON_NULL;
 		assertTrue(tn.equals(nullVal));
-	}
-	
-	@Test
-	public void testAppend() {
-		JSONValue testArray = JSONFactory.createArray();
-		JSONObject testObject = JSONFactory.createObject();
-		
 	}
 }
