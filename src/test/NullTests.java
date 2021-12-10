@@ -83,8 +83,11 @@ public class NullTests {
 	
 	@Test
 	public void testAppend() {
-		JSONValue testArray = JSONFactory.createArray();
+		JSONArray testArray = JSONFactory.createArray();
 		JSONObject testObject = JSONFactory.createObject();
-		//TODO:IMplement this
+		JSONValue testNull = JSONNull.JSON_NULL;
+		testArray.addValue(testNull);
+		
+		assertTrue(testArray.get(0) == JSONNull.JSON_NULL);
 	}
 }
