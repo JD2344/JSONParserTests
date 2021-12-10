@@ -125,6 +125,8 @@ public class ArrayTests {
 
 	/**
 	 * Provides testing functionality for the {@link JSONArray} .add() methods
+	 * NOTE: This also covers the {@link JSONValue} appendTo functionality
+	 * for each value type
 	 */
 	@DisplayName("Test of adding values into arrays")
 	@AfterAll
