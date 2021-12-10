@@ -38,6 +38,9 @@ public class ObjectTests {
 	/**
 	 * Test the values within an object and sure that they match a given object size
 	 * and values match.
+	 * 
+	 * NOTE: Method also covers the {@link JSONValue} appendTo functionality
+	 * for each value type
 	 */
 	@BeforeAll
 	public static void jsonInputTest() {
