@@ -78,13 +78,14 @@ public class NullTests {
 	 */
 	@Test
 	public void testEquals() {
-		//TODO: implement this
+		JSONNull tn = JSONNull.JSON_NULL;
+		assertTrue(tn.equals(nullVal));
 	}
 	
 	@Test
 	public void testAppend() {
 		JSONValue testArray = JSONFactory.createArray();
 		JSONObject testObject = JSONFactory.createObject();
-		//TODO:IMplement this
+		
 	}
 }
