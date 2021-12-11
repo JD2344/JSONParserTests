@@ -28,6 +28,12 @@ public class NullTests {
 	private static String nullstring;
 	private static final int hashVal = 953;
 	
+	/**
+	 * Startup method, this runs before all tests within a class.
+	 * Typically used to instantiate objects and create variables
+	 * that can change within a class.
+	 * 
+	 */
 	@BeforeAll
 	public static void buildObjects() {
 		nullVal = JSONNull.JSON_NULL;
