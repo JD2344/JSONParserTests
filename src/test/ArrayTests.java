@@ -6,6 +6,7 @@ import static org.junit.Assert.assertTrue;
 import java.io.IOException;
 
 import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
@@ -32,7 +33,16 @@ public class ArrayTests {
 	 * A default array of values
 	 */
 	private static JSONArray testingArray;
-
+	
+	/**
+	 * I want to check if the object has values present within it
+	 * before the tests run.
+	 */
+	@BeforeAll
+	public static void doStartup() {
+		assertTrue(testingArray != null);
+	}
+	
 	/**
 	 * Builds a new {@link JSONArray} with values of all types
 	 */
