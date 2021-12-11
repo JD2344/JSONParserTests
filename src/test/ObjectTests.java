@@ -42,8 +42,8 @@ public class ObjectTests {
 	 * NOTE: Method also covers the {@link JSONValue} appendTo functionality
 	 * for each value type
 	 */
-	@BeforeAll
-	public static void jsonInputTest() {
+	@Test
+	public void jsonInputTest() {
 		try {
 			parsedValue = JSONParser.parseFile(System.getProperty("user.dir") + "/src/jsonFiles/Testing.json");
 
