@@ -52,7 +52,7 @@ public class ArrayTests {
 	}
 	
 	/**
-	 * Executes after all the tests have been executed,
+	 * Executes after all the tests have been executed in current class,
 	 * here to demonstrate when it fires.
 	 */
 	@AfterAll
