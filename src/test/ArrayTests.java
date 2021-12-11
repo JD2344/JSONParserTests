@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import java.io.IOException;
+import java.util.Iterator;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
@@ -131,6 +132,17 @@ public class ArrayTests {
 			e.printStackTrace();
 		}
 		
+	}
+	
+	@Test
+	public void testIterator() {
+		int count = 0;
+		Iterator<JSONValue> values = testingArray.iterator();
+		
+		while(values.hasNext()) {
+			assertEquals(values.next(), testingArray.get(count));
+			count++;
+		}
 	}
 
 	/**
