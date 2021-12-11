@@ -129,8 +129,8 @@ public class ArrayTests {
 	 * for each value type
 	 */
 	@DisplayName("Test of adding values into arrays")
-	@AfterAll
-	public static void testAddValueMethods() {
+	@Test
+	public void testAddValueMethods() {
 		for (int index = 0; index < testingArray.size(); index++) {
 			
 			try {
