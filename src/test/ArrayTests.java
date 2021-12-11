@@ -56,7 +56,7 @@ public class ArrayTests {
 	 */
 	@AfterAll
 	public static void fireAfterAll() {
-		System.out.println(ArrayTests.testingArray.toString());
+		System.out.println("The array is: " + ArrayTests.testingArray.toString());
 	}
 	
 
