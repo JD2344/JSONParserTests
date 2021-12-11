@@ -16,7 +16,7 @@ import org.junit.platform.suite.api.Suite;
 	ArrayTests.class, 
 	BooleanTests.class, 
 	ExceptionTests.class, 
-	JsonTest.class, 
+	JsonValueTest.class, 
 	NullTests.class,
 	NumberTests.class, 
 	ObjectTests.class, 

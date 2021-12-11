@@ -21,7 +21,7 @@ import json.JSONValue;
  * @author James Davis - c3576413
  *
  */
-public class JsonTest {
+public class JsonValueTest {
 	
 	/**
 	 * Tests the various value methods 
