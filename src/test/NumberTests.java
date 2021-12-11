@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThrows;
 import static org.junit.Assert.assertTrue;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -19,7 +20,18 @@ import json.JSONNumber;
  *
  */
 public class NumberTests {
-
+	private static int counter = 0;
+	
+	/**
+	 * This is to demonstrate afterEach annotation. Typically
+	 * used to clear up/ change variables when after a method is fired.
+	 */
+	@AfterEach
+	public void fireAfterEach() {
+		System.out.println("After a method: " + counter);
+		counter++;
+	}
+	
 	@DisplayName("Test the number constructors")
 	@Test
 	public void testConstructors() {
