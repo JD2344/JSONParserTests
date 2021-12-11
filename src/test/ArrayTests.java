@@ -33,16 +33,6 @@ public class ArrayTests {
 	 * A default array of values
 	 */
 	private static JSONArray testingArray;
-	
-	/**
-	 * I want to check if the object has values present within it
-	 * before the tests run.
-	 */
-	@BeforeAll
-	public static void doStartup() {
-		assertTrue(testingArray != null);
-	}
-	
 	/**
 	 * Builds a new {@link JSONArray} with values of all types
 	 */
@@ -59,6 +49,16 @@ public class ArrayTests {
 		finishedA.addValue();
 		ArrayTests.testingArray = finishedA;
 	}
+	
+	/**
+	 * Executes after all the tests have been executed,
+	 * here to demonstrate when it fires.
+	 */
+	@AfterAll
+	public static void fireAfterAll() {
+		System.out.println(ArrayTests.testingArray.toString());
+	}
+	
 
 	/**
 	 * Tests the constructors of the {@link JSONArray} class
