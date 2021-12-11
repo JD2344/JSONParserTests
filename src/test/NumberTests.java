@@ -83,8 +83,8 @@ public class NumberTests {
 	}
 
 	@DisplayName("Test the number types")
-	@BeforeAll
-	public static void testAsType() {
+	@Test
+	public void testAsType() {
 		JSONNumber withInt = JSONFactory.createNumber(1);
 		JSONNumber withDouble = JSONFactory.createNumber(10.2);
 		JSONNumber withFloat = JSONFactory.createNumber(22.412312343f);
