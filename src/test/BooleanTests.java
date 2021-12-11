@@ -5,6 +5,7 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assume.assumeFalse;
 import static org.junit.Assume.assumeTrue;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
@@ -21,11 +22,23 @@ import json.JSONFactory;
  */
 public class BooleanTests {
 	/**
+	 * This method is to demonstrate a beforeEach method. 
+	 * it typically fires before each test and can be used to
+	 * reset initialised variables, or change them for different
+	 * test results.
+	 */
+	@BeforeEach
+	public void firebeforeEach() {
+		System.out.println("Before a method in BooleanTests");
+	}
+	
+	/**
 	 * Tests the {@link JSONBoolean} constructor
 	 */
 	@DisplayName("Test of all boolean initializers")
 	@Test
 	public void testBooleanInit() {
+		System.out.println("Firing testboolean init");
 		JSONBoolean firstVal = JSONFactory.createBoolean(false);
 		
 		assertTrue(firstVal instanceof JSONBoolean);
@@ -40,6 +53,7 @@ public class BooleanTests {
 	@DisplayName("Test of to string methods")
 	@Test
 	public void testToString() {
+		System.out.println("Firing testToString");
 		JSONBoolean firstVal = JSONFactory.createBoolean(false);
 		JSONBoolean secondVal = JSONFactory.createBoolean(true);
 		assertEquals(firstVal.toString(), "false");
@@ -56,6 +70,7 @@ public class BooleanTests {
 	@ParameterizedTest
 	@ValueSource(booleans = { true, false })
 	public void testAsBoolean(boolean testVal) {
+		System.out.println("Firing testasboolean");
 		JSONBoolean boolVal = JSONFactory.createBoolean(testVal);
 		assertTrue(boolVal.asBoolean() == testVal);
 	}
@@ -66,6 +81,7 @@ public class BooleanTests {
 	@DisplayName("Test hascodes of boolean Class")
 	@Test
 	public void testHashCodes() {
+		System.out.println("Firing testhashcode");
 		JSONBoolean firstBool = JSONFactory.createBoolean(true);
 		JSONBoolean secondBool = JSONFactory.createBoolean(false);
 		
@@ -79,6 +95,7 @@ public class BooleanTests {
 	@DisplayName("Test the boolean equals method")
 	@RepeatedTest(5)
 	public void testEquals() {
+		System.out.println("Firing testEquals");
 		JSONBoolean falseB = JSONFactory.createBoolean(false);
 		JSONBoolean duplicateF = JSONFactory.createBoolean(false);
 
