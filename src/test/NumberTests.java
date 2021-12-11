@@ -40,8 +40,9 @@ public class NumberTests {
 		JSONNumber withFloat = JSONFactory.createNumber(22.412312343f);
 		JSONNumber withLong = JSONFactory.createNumber(213425245l);
 		JSONNumber withLongovMax = JSONFactory.createNumber(9913425245l);
-		JSONNumber wEmptyDouble = JSONFactory.createNumber(0);
+		JSONNumber wEmptyDouble = JSONFactory.createNumber(0.0);
 		JSONNumber wEmptyFloat = JSONFactory.createNumber(0.0f);
+		JSONNumber wEmptyLong = JSONFactory.createNumber(0);
 
 		assertTrue(withDouble instanceof JSONNumber);
 		assertTrue(withLongDec instanceof JSONNumber);
@@ -49,9 +50,10 @@ public class NumberTests {
 		assertTrue(withLong instanceof JSONNumber);
 		assertTrue(withLongovMax instanceof JSONNumber);
 		assertTrue(wEmptyDouble instanceof JSONNumber);
-		assertEquals(wEmptyDouble, JSONNumber.JSON_ZERO_NUMBER);
+		assertEquals(wEmptyDouble, JSONNumber.JSON_ZERO_FLOAT);
 		assertTrue(wEmptyFloat instanceof JSONNumber);
 		assertEquals(wEmptyFloat, JSONNumber.JSON_ZERO_FLOAT);
+		assertEquals(wEmptyLong, JSONNumber.JSON_ZERO_NUMBER);
 	}
 
 	@DisplayName("Test Equals method of Number classes")
