@@ -58,7 +58,7 @@ public class NullTests {
 	/**
 	 * Test the tostring method of the {@link JSONNull} class
 	 */
-	@RepeatedTest(5)
+	@RepeatedTest(value=5, name="{displayName} {currentRepetition}/{totalRepetitions}")
 	public void testToString() {
 		if(nullVal.toString() == nullstring) {
 			assertTrue(nullVal.toString() == nullstring);			
@@ -72,7 +72,7 @@ public class NullTests {
 	/**
 	 * Test the Hashcode method of the {@link JSONNull} class
 	 */
-	@RepeatedTest(5)
+	@RepeatedTest(value=5, name="{displayName} {currentRepetition}/{totalRepetitions}")
 	public void testHashCode() {
 		if(nullVal.hashCode() == hashVal) {
 			assertTrue(nullVal.hashCode() == hashVal);			
