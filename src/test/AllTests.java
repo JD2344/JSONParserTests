@@ -6,6 +6,8 @@ import org.junit.platform.suite.api.Suite;
 /**
  * Contains all the testing modules in one place
  * 
+ * NOTE:Needs to be run with the JUNIT V5 Api 
+ * 
  * @author James Davis - c3576413
  *
  */
